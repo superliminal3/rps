@@ -18,37 +18,48 @@ function playGame() {
 		humanChoice = humanChoice.toLowerCase();
 		if (computerChoice == "rock" && humanChoice == "paper") {
 			humanScore++;
-			console.log("Human wins! paper beats rock");
+			display.textContent = "Human wins! paper beats rock";
 		} else if (computerChoice == "rock" && humanChoice == "scissors") {
 			computerScore++;
-			console.log("Human loses! rock beats scissors");
+			display.textContent = "Human loses! rock beats scissors";
 		} else if (computerChoice == "paper" && humanChoice == "rock") {
 			computerScore++;
-			console.log("Human loses! paper beats rock");
+			display.textContent = "Human loses! paper beats rock";
 		} else if (computerChoice == "paper" && humanChoice == "scissors") {
 			humanScore++;
-			console.log("Human wins! scissors beats paper");
+			display.textContent = "Human wins! scissors beats paper";
 		} else if (computerChoice == "scissors" && humanChoice == "rock") {
 			humanScore++;
-			console.log("Human wins! rock beats scissors");
+			display.textContent = "Human wins! rock beats scissors";
 		} else if (computerChoice == "scissors" && humanChoice == "paper") {
 			computerScore++;
-			console.log("Human loses! scissors beat paper");
+			display.textContent = "Human loses! scissors beat paper";
 		} else {
-			console.log("Tie");
+			display.textContent = "Tie";
 		}
 	}
+	
+	const rock = document.querySelector("#rock");
+	const paper = document.querySelector("#paper");
+	const scissors = document.querySelector("#scissors");
 
-	for (let i = 0; i < 5; i++) {
-		playRound(getComputerChoice(), getHumanChoice());
-	}
+	rock.addEventListener("click", () => {playRound(getComputerChoice(), "rock")});
+	paper.addEventListener("click", () => {playRound(getComputerChoice(), "paper")});
+	scissors.addEventListener("click", () => {playRound(getComputerChoice(), "scissors")});
 
-	if (computerScore == humanScore) {
-		console.log("No winner!");
-	} else {
-		(computerScore > humanScore) ? (console.log("Computer wins!")) : (console.log("Human wins!"));
-	}
+	const body = document.querySelector("body");
+	const display = document.createElement("div");
+	body.appendChild(display);
 
+	const gameResult = document.createElement("div");
+	body.appendChild(gameResult);
+
+//		if (computerScore == humanScore) {
+//			gameResult.textContent = "No winner!";
+//		} else {
+//			(computerScore > humanScore) ? (gameResult.textContent = "Computer wins!") : (gameResult.textContent = "Human wins!");
+//		}
+//	}
 }
 
 playGame();
