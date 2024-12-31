@@ -1,11 +1,16 @@
 const body = document.querySelector("body");
 
+const topcontainer = document.createElement("div");
+const botcontainer = document.createElement("div");
+
 const rock = document.createElement("button");
 const paper = document.createElement("button");
 const scissors = document.createElement("button");
 const display = document.createElement("div");
 const gameResult = document.createElement("div");
 const restart = document.createElement("button");
+
+topcontainer.setAttribute("style", "display: flex; flex-direction: row; gap: 10px;");
 
 rock.textContent = "rock";
 paper.textContent = "paper";
@@ -17,11 +22,13 @@ paper.addEventListener("click", () => {playRound(getComputerChoice(), "paper")})
 scissors.addEventListener("click", () => {playRound(getComputerChoice(), "scissors")});
 restart.addEventListener("click", () => {startAgain()});
 
-body.appendChild(rock);
-body.appendChild(paper);
-body.appendChild(scissors);
-body.appendChild(display);
-body.appendChild(gameResult);
+body.appendChild(topcontainer);
+body.appendChild(botcontainer);
+
+topcontainer.appendChild(rock);
+topcontainer.appendChild(paper);
+topcontainer.appendChild(scissors);
+botcontainer.appendChild(display);
 
 let humanScore = 0;
 let computerScore = 0;
@@ -51,18 +58,23 @@ function checkScore() {
 }
 
 function removeButtons() {
-	body.removeChild(rock);
-	body.removeChild(paper);
-	body.removeChild(scissors);
-	body.insertBefore(gameResult, display);
-	body.insertBefore(restart, display);
+	topcontainer.removeChild(rock);
+	topcontainer.removeChild(paper);
+	topcontainer.removeChild(scissors);
+	topcontainer.setAttribute("style",
+		"display: flex; flex-direction: column;");
+	topcontainer.appendChild(restart);
+	topcontainer.appendChild(gameResult);
 }
 
 function startAgain() {
-	body.removeChild(restart);
-	body.insertBefore(rock, display);
-	body.insertBefore(paper, display);
-	body.insertBefore(scissors, display);
+	topcontainer.removeChild(restart);
+	topcontainer.removeChild(gameResult);
+	topcontainer.setAttribute("style",
+		"display: flex; flex-direction: row;");
+	topcontainer.appendChild(rock);
+	topcontainer.appendChild(paper);
+	topcontainer.appendChild(scissors);
 	playRound(getComputerChoice(), "");
 }
 
