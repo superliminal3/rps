@@ -10,6 +10,8 @@ const display = document.createElement("div");
 const gameResult = document.createElement("div");
 const restart = document.createElement("button");
 
+body.setAttribute("style", "display: flex; flex-direction: column; justify-content: center; align-items: center;");
+
 topcontainer.setAttribute("style", "display: flex; flex-direction: row; gap: 10px;");
 
 rock.textContent = "rock";
@@ -61,21 +63,19 @@ function removeButtons() {
 	topcontainer.removeChild(rock);
 	topcontainer.removeChild(paper);
 	topcontainer.removeChild(scissors);
-	topcontainer.setAttribute("style",
-		"display: flex; flex-direction: column;");
+	topcontainer.setAttribute("style", "display: flex; flex-direction: column;");
 	topcontainer.appendChild(restart);
 	topcontainer.appendChild(gameResult);
+	display.textContent = "";
 }
 
 function startAgain() {
 	topcontainer.removeChild(restart);
 	topcontainer.removeChild(gameResult);
-	topcontainer.setAttribute("style",
-		"display: flex; flex-direction: row;");
+	topcontainer.setAttribute("style", "display: flex; flex-direction: row; gap: 10px;");
 	topcontainer.appendChild(rock);
 	topcontainer.appendChild(paper);
 	topcontainer.appendChild(scissors);
-	playRound(getComputerChoice(), "");
 }
 
 function playRound(computerChoice, humanChoice) {
